@@ -1,5 +1,5 @@
-import 'package:kazi_api/domain/entities/service_type.dart';
-import 'package:kazi_api/domain/entities/user.dart';
+import 'package:kazi_api/src/domain/entities/service_type.dart';
+import 'package:kazi_api/src/domain/entities/user.dart';
 
 class Service {
   const Service({

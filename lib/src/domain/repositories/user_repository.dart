@@ -1,4 +1,4 @@
-import 'package:kazi_api/domain/entities/user.dart';
+import 'package:kazi_api/src/domain/entities/user.dart';
 
 abstract interface class UserRepository {
   Future<User> create(User user);
@@ -9,6 +9,6 @@ abstract interface class UserRepository {
   Future<List<User>> findAll({
     int? companyId,
     int? userId,
-    UserType? type,
+    UserRole? type,
   });
-} 
+}

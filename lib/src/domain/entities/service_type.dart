@@ -1,8 +1,5 @@
-import 'package:kazi_api/domain/entities/company.dart';
-import 'package:kazi_api/domain/entities/service.dart';
-import 'package:kazi_api/domain/entities/service_type_promotion.dart';
-import 'package:kazi_api/domain/entities/special_discount.dart';
-import 'package:kazi_api/domain/entities/user.dart';
+import 'package:kazi_api/src/domain/entities/service.dart';
+import 'package:kazi_api/src/domain/entities/user.dart';
 
 class ServiceType {
   const ServiceType({
@@ -12,12 +9,12 @@ class ServiceType {
     required this.discountValue,
     required this.performanceTime,
     this.isActive = true,
-    this.companyId,
-    this.company,
+    // this.companyId,
+    // this.company,
     this.userId,
     this.user,
-    this.specialDiscounts = const [],
-    this.serviceTypePromotions = const [],
+    // this.specialDiscounts = const [],
+    // this.serviceTypePromotions = const [],
     this.services = const [],
   });
 
@@ -27,12 +24,12 @@ class ServiceType {
   final double discountValue;
   final int performanceTime;
   final bool isActive;
-  final int? companyId;
-  final Company? company;
+  // final int? companyId;
+  // final Company? company;
   final int? userId;
   final User? user;
-  final List<SpecialDiscount> specialDiscounts;
-  final List<ServiceTypePromotion> serviceTypePromotions;
+  // final List<SpecialDiscount> specialDiscounts;
+  // final List<ServiceTypePromotion> serviceTypePromotions;
   final List<Service> services;
 
   double get discountPercent {
@@ -51,12 +48,12 @@ class ServiceType {
           discountValue == other.discountValue &&
           performanceTime == other.performanceTime &&
           isActive == other.isActive &&
-          companyId == other.companyId &&
-          company == other.company &&
+          // companyId == other.companyId &&
+          // company == other.company &&
           userId == other.userId &&
           user == other.user &&
-          specialDiscounts == other.specialDiscounts &&
-          serviceTypePromotions == other.serviceTypePromotions &&
+          // specialDiscounts == other.specialDiscounts &&
+          // serviceTypePromotions == other.serviceTypePromotions &&
           services == other.services;
 
   @override
@@ -67,11 +64,11 @@ class ServiceType {
       discountValue.hashCode ^
       performanceTime.hashCode ^
       isActive.hashCode ^
-      companyId.hashCode ^
-      company.hashCode ^
+      // companyId.hashCode ^
+      // company.hashCode ^
       userId.hashCode ^
       user.hashCode ^
-      specialDiscounts.hashCode ^
-      serviceTypePromotions.hashCode ^
+      // specialDiscounts.hashCode ^
+      // serviceTypePromotions.hashCode ^
       services.hashCode;
 }

@@ -1,4 +1,4 @@
-import 'package:kazi_api/domain/entities/service_type.dart';
+import 'package:kazi_api/src/domain/entities/service_type.dart';
 
 abstract interface class ServiceTypeRepository {
   Future<ServiceType> create(ServiceType serviceType);
@@ -9,4 +9,4 @@ abstract interface class ServiceTypeRepository {
     int? companyId,
     int? userId,
   });
-} 
+}

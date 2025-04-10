@@ -1,4 +1,4 @@
-import 'package:kazi_api/domain/entities/service.dart';
+import 'package:kazi_api/src/domain/entities/service.dart';
 
 abstract interface class ServiceRepository {
   Future<Service> create(Service service);
@@ -12,4 +12,4 @@ abstract interface class ServiceRepository {
     DateTime? startDate,
     DateTime? endDate,
   });
-} 
+}
