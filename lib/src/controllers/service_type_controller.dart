@@ -54,7 +54,7 @@ class ServiceTypeController {
   @Delete('/<id>')
   Future<Response> delete(@Param('id') int id) async {
     try {
-      await _serviceTypeService.delete(id);
+      await _serviceTypeService.deactive(id);
       return Response.ok(null);
     } catch (error) {
       return Response.badRequest();
