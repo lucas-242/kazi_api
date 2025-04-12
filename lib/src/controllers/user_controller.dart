@@ -1,4 +1,5 @@
 import 'package:kazi_api/src/controllers/dtos/user_dto.dart';
+import 'package:kazi_api/src/domain/errors/app_error.dart';
 import 'package:kazi_api/src/domain/services/user_service.dart';
 import 'package:vaden/vaden.dart';
 
@@ -13,8 +14,8 @@ class UserController {
     try {
       final response = await _userService.create(user.toEntity());
       return Response.ok(response);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -22,8 +23,8 @@ class UserController {
   Future<Response> getById(@Param('id') int id) async {
     try {
       return Response.ok(await _userService.getById(id));
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -31,8 +32,8 @@ class UserController {
   Future<Response> get() async {
     try {
       return Response.ok(await _userService.get());
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -43,8 +44,8 @@ class UserController {
 
       final response = await _userService.update(user.toEntity());
       return Response.ok(response);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -53,8 +54,8 @@ class UserController {
     try {
       await _userService.delete(id);
       return Response.ok(null);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 

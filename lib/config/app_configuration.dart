@@ -11,6 +11,7 @@ class AppConfiguration {
   Pipeline globalMiddleware(ApplicationSettings settings) {
     return Pipeline() //
         .addMiddleware(cors(allowedOrigins: ['*']))
+        // .addVadenMiddleware(ErrorHandlerMiddleware())
         .addVadenMiddleware(EnforceJsonContentType())
         .addMiddleware(logRequests());
   }

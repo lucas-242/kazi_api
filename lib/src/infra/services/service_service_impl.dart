@@ -1,4 +1,5 @@
 import 'package:kazi_api/src/domain/entities/service.dart';
+import 'package:kazi_api/src/domain/errors/app_error.dart';
 import 'package:kazi_api/src/domain/repositories/service_repository.dart';
 import 'package:kazi_api/src/domain/services/service_service.dart';
 
@@ -15,7 +16,7 @@ final class ServiceServiceImpl implements ServiceService {
   @override
   Future<void> cancel(int serviceId) async {
     final service = await _repository.getById(serviceId);
-    if (service == null) throw Exception('Service not found');
+    if (service == null) throw const NotFoundError('Service not found');
     await _repository.cancel(serviceId);
   }
 

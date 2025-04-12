@@ -1,4 +1,5 @@
 import 'package:kazi_api/src/controllers/dtos/service_dto.dart';
+import 'package:kazi_api/src/domain/errors/app_error.dart';
 import 'package:kazi_api/src/domain/services/service_service.dart';
 import 'package:vaden/vaden.dart';
 
@@ -13,8 +14,8 @@ class ServiceController {
     try {
       final response = await _serviceService.create(service.toEntity());
       return Response.ok(response);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -22,8 +23,8 @@ class ServiceController {
   Future<Response> getById(@Param('id') int id) async {
     try {
       return Response.ok(await _serviceService.getById(id));
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -31,8 +32,8 @@ class ServiceController {
   Future<Response> get() async {
     try {
       return Response.ok(await _serviceService.get());
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -46,8 +47,8 @@ class ServiceController {
 
       final response = await _serviceService.update(service.toEntity());
       return Response.ok(response);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 
@@ -56,8 +57,8 @@ class ServiceController {
     try {
       await _serviceService.cancel(id);
       return Response.ok(null);
-    } catch (error) {
-      return Response.badRequest();
+    } on AppError catch (error) {
+      return error.toResponse();
     }
   }
 }

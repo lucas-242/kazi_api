@@ -1,4 +1,5 @@
 import 'package:kazi_api/src/domain/entities/service_type.dart';
+import 'package:kazi_api/src/domain/errors/app_error.dart';
 import 'package:kazi_api/src/domain/repositories/service_type_repository.dart';
 import 'package:kazi_api/src/domain/services/service_type_service.dart';
 
@@ -17,7 +18,7 @@ final class ServiceTypeServiceImpl implements ServiceTypeService {
   @override
   Future<void> deactive(int id) async {
     final serviceType = await _repository.getById(id);
-    if (serviceType == null) throw Exception('ServiceType not found');
+    if (serviceType == null) throw const NotFoundError('ServiceType not found');
     await _repository.deactive(id);
   }
 

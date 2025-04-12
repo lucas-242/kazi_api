@@ -1,4 +1,5 @@
 import 'package:kazi_api/src/domain/entities/user.dart';
+import 'package:kazi_api/src/domain/errors/app_error.dart';
 import 'package:kazi_api/src/domain/repositories/user_repository.dart';
 import 'package:kazi_api/src/domain/services/user_service.dart';
 
@@ -28,7 +29,7 @@ final class UserServiceImpl implements UserService {
   @override
   Future<bool> validateUserCredentials(String email, String password) async {
     final user = await _repository.getByEmail(email);
-    if (user == null) return false;
+    if (user == null) throw const NotFoundError('User not found');
     return user.password == password;
   }
 
@@ -39,9 +40,10 @@ final class UserServiceImpl implements UserService {
     String newPassword,
   ) async {
     final user = await _repository.getById(userId);
-    if (user == null) throw Exception('User not found');
-    if (user.password != currentPassword)
-      throw Exception('Invalid current password');
+    if (user == null) throw const NotFoundError('User not found');
+    if (user.password != currentPassword) {
+      throw const UnauthorizedError('Invalid current password');
+    }
 
     final updatedUser = User(
       id: user.id,
@@ -64,7 +66,7 @@ final class UserServiceImpl implements UserService {
   @override
   Future<void> resetPassword(int userId) async {
     final user = await _repository.getById(userId);
-    if (user == null) throw Exception('User not found');
+    if (user == null) throw const NotFoundError('User not found');
 
     final updatedUser = User(
       id: user.id,
@@ -87,7 +89,7 @@ final class UserServiceImpl implements UserService {
   @override
   Future<bool> hasPermission(int userId, String permission) async {
     final user = await _repository.getById(userId);
-    if (user == null) return false;
+    if (user == null) throw const NotFoundError('User not found');
 
     // TODO: Implement permission check based on user role and permission string
     // This is a placeholder implementation
